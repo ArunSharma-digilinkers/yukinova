@@ -590,7 +590,6 @@ $dark-light :#f1eeeb;
 
 .why-card p {
     font-size: 15px;
-    color: #555;
     line-height: 25px;
 }
 
@@ -622,13 +621,11 @@ $dark-light :#f1eeeb;
     font-size: 34px;
     font-weight: 700;
     margin-bottom: 20px;
-    color: #111;
 }
 
 .about-content p {
     font-size: 16px;
     line-height: 28px;
-    color: #555;
     margin-bottom: 15px;
 }
 
@@ -645,6 +642,39 @@ $dark-light :#f1eeeb;
 
 .btn-about:hover {
     background: #0056b3; /* change to brand color */
+}
+
+
+.why-us-wrapper {
+    background: #f9fbf9;
+    
+    h2 {
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .why-card {
+        transition: 0.3s ease;
+        border: 0;
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #0d6efd, #003f88);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+    }
 }
 
 
