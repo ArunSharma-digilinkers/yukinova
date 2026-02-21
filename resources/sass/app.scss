@@ -288,7 +288,6 @@ $dark-light :#f1eeeb;
 
 .new-product-card .product-image img {
     width: 100%;
-    height: 180px;
     object-fit: contain;
     transition: 0.4s ease;
 }
@@ -607,7 +606,197 @@ $dark-light :#f1eeeb;
 }
 
 
-/*-------------------------------------------------------------- About Styling------------------------------------------------ */
+/* ===== GENERAL ===== */
+.main-wrapper {
+    background: #f9fafb;
+}
+
+.product-main-image {
+    background: #fff;
+    padding: 20px;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-img {
+    max-height: 420px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-main-image:hover .main-img {
+    transform: scale(1.05);
+}
+
+/* ===== THUMBNAILS ===== */
+.thumb {
+    width:100%;
+    height: auto!important;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.thumb:hover {
+    transform: scale(1.08);
+}
+
+.active-thumb {
+    border-color: #000000;
+}
+
+/* ===== RIGHT SIDE STICKY ===== */
+@media (min-width: 992px) {
+    .col-md-6:last-child {
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+    }
+}
+
+/* ===== PRICE ===== */
+.text-success {
+    font-size: 28px;
+}
+
+.badge.bg-danger {
+    font-size: 14px;
+    padding: 6px 10px;
+}
+
+.pro-name {
+    color: $primary-color;
+}
+
+/* ===== BUTTONS ===== */
+.btn-submit {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: $primary-color;
+    transform: translateY(-2px);
+}
+
+/* ===== QUANTITY ===== */
+#cart-actions .btn {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+}
+
+/* ===== ACCORDION ===== */
+.product-accordion .accordion-item {
+    border: none;
+    border-bottom: 1px solid #eee;
+}
+
+.product-accordion .accordion-button {
+    font-weight: 600;
+    background: transparent;
+    box-shadow: none;
+}
+
+.product-accordion .accordion-button:not(.collapsed) {
+    color: $color-black;
+}
+
+/* ===== SHARE BUTTON ===== */
+.share-btn {
+    background: transparent;
+    border: 1px solid #ddd;
+    padding: 8px 18px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.share-btn:hover {
+    background: $primary-color;
+    color: #fff;
+    border-color: $primary-color;
+}
+
+/* ===== SUCCESS MESSAGE ===== */
+.alert-success {
+    border-radius: 10px;
+}
+
+/* ===== MOBILE IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    .product-main-image {
+        min-height: 320px;
+    }
+
+    .main-img {
+        max-height: 300px;
+    }
+}
+
+/* ===== PRODUCT TABS ===== */
+
+.product-details-wrapper {
+    background: #fff;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+/* Tabs header */
+.product-tabs {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 25px;
+    gap: 20px;
+}
+
+.product-tabs .nav-link {
+    border: none;
+    background: none;
+    font-weight: 600;
+    color: #777;
+    padding: 10px 0;
+    position: relative;
+}
+
+.product-tabs .nav-link.active {
+    color: #111;
+}
+
+.product-tabs .nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #111;
+}
+
+/* Tab content */
+.tab-card {
+    padding-top: 10px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* Smooth fade */
+.tab-pane {
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+/*------------------------------------------------ About Styling------------------------------------------------ */
+
 .about-info-wrapper {
     background: #ffffff;
 }
@@ -679,7 +868,198 @@ $dark-light :#f1eeeb;
 
 
 
-/*-------------------------------------------------------------- Footer Styling------------------------------------------------ */
+/*------------------------------------------------ Contact Styling------------------------------------------------ */
+
+
+.contact-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.custom-input .form-control {
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    transition: all 0.3s ease;
+}
+
+.custom-input .form-control:focus {
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 0.2rem rgba(30, 58, 138, 0.15);
+}
+
+.submit-btn {
+    background: linear-gradient(90deg, #1e3a8a, #2563eb);
+    color: #fff;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(90deg, #2563eb, #1e3a8a);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+    color: #fff;
+}
+
+.contact-info-section {
+    background: #f8fafc;
+}
+
+/* Card */
+.info-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    border-left: 5px solid #1e3a8a;
+    transition: 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Section Title */
+.section-title {
+    color: #1e3a8a;
+}
+
+/* Icon Box */
+.icon-box {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 16px;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Info Item */
+.info-item h6 {
+    color: #1e3a8a;
+}
+
+/* Map */
+.map-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+.contact-detail {
+    width: 80%;
+}
+
+
+/*------------------------------------------------ Footer Styling------------------------------------------------ */
+.product-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.product-img {
+    overflow: hidden;
+    background: #f8f9fa;
+}
+
+.product-img img {
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-img img {
+    transform: scale(1.08);
+}
+
+.product-body {
+    padding: 10px;
+}
+
+.product-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.product-desc {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.product-price {
+    margin-bottom: 15px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 8px;
+}
+
+.sale-price {
+    color: #e63946;
+    font-weight: 600;
+}
+
+.regular-price {
+    font-weight: 600;
+    color: #222;
+}
+
+.btn-cart {
+    width: 100%;
+    background: #111;
+    color: #fff;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-cart:hover {
+    background: #e63946;
+}
+
+.badge-new,
+.badge-sale {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.badge-new {
+    background: #2a9d8f;
+}
+
+.badge-sale {
+    background: #e63946;
+    left: auto;
+    right: 10px;
+}
+
+/*------------------------------------------------ Footer Styling------------------------------------------------ */
 
 .main-footer {
     background: linear-gradient(135deg, #0d6efd, #003f88);
@@ -789,4 +1169,45 @@ $dark-light :#f1eeeb;
 .footer-bottom p {
     margin: 0;
     font-size: 14px;
+}
+
+
+// For Admin Panel
+
+nav.admin-sidebar {
+	position: fixed;
+	top: 67px;
+	left: 0;
+	width: 250px;
+	height: calc(100vh - 100px);
+	overflow-y: auto;
+	box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+	z-index: 1000;
+	padding: 1rem 0.5rem;
+}
+
+.admin-main-content {
+	margin-left: 250px;
+	padding: 20px;
+	min-height: calc(100vh - 56px);
+}
+
+.admin-sidebar .nav-link {
+	color: #cfd8dc;
+	padding: 12px 15px;
+	border-radius: 8px;
+	transition: all 0.3s ease;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.admin-sidebar .nav-link:hover {
+	background-color: #1abc9c;
+	color: #fff;
+	transform: translateX(5px);
+}
+
+.admin-sidebar .nav-link.active {
+	background-color: #16a085;
+	color: #fff;
 }

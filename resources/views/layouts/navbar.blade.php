@@ -32,14 +32,14 @@
                             Products
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Two Wheeler Battery</a></li>
-                            <li><a class="dropdown-item" href="#">Three Wheeler Battery</a></li>
-                            <li><a class="dropdown-item" href="#">Traction Battery</a></li>
-                            <li><a class="dropdown-item" href="#">Portable Power Solution</a></li>
-                            <li><a class="dropdown-item" href="#">Solar Battery</a></li>
-                            <li><a class="dropdown-item" href="#">Cycle Battery</a></li>
-                            <li><a class="dropdown-item" href="#">Energy Solution System</a></li>
-                            <li><a class="dropdown-item" href="#">ESS for Commercial Industry</a></li>
+                            <li><a class="dropdown-item" href="{{ url('two-wheeler-battery') }}">Two Wheeler Battery</a></li>
+                            <li><a class="dropdown-item" href="{{ url('three-wheeler-battery') }}">Three Wheeler Battery</a></li>
+                            <li><a class="dropdown-item" href="{{ url('traction-battery') }}">Traction Battery</a></li>
+                            <li><a class="dropdown-item" href="{{ url('portable-power-solution') }}">Portable Power Solution</a></li>
+                            <li><a class="dropdown-item" href="{{ url('solar-battery') }}">Solar Battery</a></li>
+                            <li><a class="dropdown-item" href="{{ url('cycle-battery') }}">Cycle Battery</a></li>
+                            <li><a class="dropdown-item" href="{{ url('energy-solution-system') }}">Energy Solution System</a></li>
+                            <li><a class="dropdown-item" href="{{ url('ess-commercial-industrial') }}">ESS for Commercial Industry</a></li>
                         </ul>
                     </li>
 
@@ -70,37 +70,72 @@
                             </span>
                         </a>
                     </li>
+                    {{-- AUTH SECTION --}}
 
-                    <!-- AUTH SECTION -->
                     @guest
-                        <li class="nav-item ms-lg-2">
-                            <a class="nav-link" href="{{ route('login') }}">
-                                <i class="fa-regular fa-user"></i> Login
-                            </a>
-                        </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <i class="fa-regular fa-user"></i> Login
+                        </a>
+                    </li>
 
-                        <li class="nav-item ms-lg-2">
-                            <a class="nav-link btn-register" href="{{ route('register') }}">
-                                Register
-                            </a>
-                        </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link btn-register" href="{{ route('register') }}">
+                            Register
+                        </a>
+                    </li>
                     @endguest
 
                     @auth
-                        <li class="nav-item dropdown ms-lg-2">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                <i class="fa-regular fa-user"></i> {{ auth()->user()->name }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item">Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
+                    {{-- User Dropdown --}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{ auth()->user()->avatar_url ?? asset('img/default-avatar.png') }}"
+                                class="rounded-circle me-1" style="width: 24px; height: 24px; object-fit: cover;">
+                            {{ auth()->user()->name }}
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            @if(auth()->user()->role === 'admin')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                    <i class="fas fa-tachometer-alt me-2"></i>Admin Panel
+                                </a>
+                            </li>
+                            @else
+                            <li>
+                                <a class="dropdown-item" href="{{ route('user.dashboard') }}">
+                                    <i class="fas fa-box me-2"></i>My Orders
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('user.addresses.index') }}">
+                                    <i class="fas fa-map-marker-alt me-2"></i>Addresses
+                                </a>
+                            </li>
+                            @endif
+
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    <i class="fas fa-user-edit me-2"></i>Profile
+                                </a>
+                            </li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">
+                                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
                     @endauth
 
                 </ul>

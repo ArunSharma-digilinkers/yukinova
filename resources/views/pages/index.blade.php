@@ -46,7 +46,7 @@
                 <!-- RIGHT PRODUCTS -->
                 <div class="product-grid" data-aos="fade-up">
 
-                    <a href="#" class="product-card">
+                    <a href="{{ url('two-wheeler-battery') }}" class="product-card">
                         <div class="card-image">
                             <img src="{{ asset('img/two-wheeler-battery.png') }}" alt="Two Wheeler Battery">
                         </div>
@@ -56,7 +56,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="product-card">
+                    <a href="{{ url('three-wheeler-battery') }}" class="product-card">
                         <div class="card-image">
                             <img src="{{ asset('img/e-rickshaw.png') }}" alt="Two Wheeler Battery">
                         </div>
@@ -65,7 +65,7 @@
                             <span class="explore-btn">Explore →</span>
                         </div>
                     </a>
-                    <a href="#" class="product-card">
+                    <a href="{{ url('portable-power-solution') }}" class="product-card">
                         <div class="card-image">
                             <img src="{{ asset('img/portable-battery.png') }}" alt="Two Wheeler Battery">
                         </div>
@@ -75,7 +75,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="product-card">
+                    <a href="portable-power-solution" class="product-card">
                         <div class="card-image">
                             <img src="{{ asset('img/hybrid-inverter.png') }}" alt="Two Wheeler Battery">
                         </div>
@@ -85,7 +85,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="product-card">
+                    <a href="cycle-battery" class="product-card">
                         <div class="card-image">
                             <img src="{{ asset('img/cycle-battery.png') }}" alt="Two Wheeler Battery">
                         </div>
@@ -94,7 +94,6 @@
                             <span class="explore-btn">Explore →</span>
                         </div>
                     </a>
-
                         <a href="#" class="product-card">
                         <div class="card-image">
                             <img src="{{ asset('img/inverter.png') }}" alt="Two Wheeler Battery">
@@ -121,7 +120,7 @@
             </div>
 
             <div class="new-product-grid">
-
+       @foreach($products as $product)
                 <div class="new-product-card">
 
                     <div class="product-image">
@@ -130,15 +129,16 @@
                     </div>
 
                     <div class="product-content">
-                        <h4>Product Name</h4>
-                        <p class="price">₹ Price</p>
+                        <h4>{{ $product->name }}</h4>
+                        <p class="price">₹ {{ $product->price }}</p>
 
-                        <a href="#" class="btn-view">
+                        <a href="{{ route('product.show', $product->slug) }}" class="btn-view">
                             View Details
                         </a>
                     </div>
 
                 </div>
+                @endforeach
 
             </div>
 
