@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Admin\ShippingZoneController;
+use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\Admin\OrderController;
 
 
 // pages
@@ -33,8 +36,20 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('category', CategoryController::class); 
     Route::resource('product', ProductController::class);
     Route::resource('coupons', CouponController::class)->except('show');
+    Route::resource('shipping-zones', ShippingZoneController::class)->except('show');
+    Route::get('orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{order}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
+    Route::post('orders/{order}/status', [App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 });
 
+
+/* USER ROUTES */
+Route::prefix('user')->middleware(['auth', 'role:user'])->name('user.')->group(function () {
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/orders/{order}', [UserDashboardController::class, 'showOrder'])->name('orders.show');
+    Route::resource('addresses', AddressController::class)->except(['show']);
+
+});
 
 // For Cart
 Route::post('/cart/add/{slug}', [CartController::class, 'add'])->name('cart.add');

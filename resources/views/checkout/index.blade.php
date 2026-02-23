@@ -5,7 +5,7 @@
     <div class="container py-4">
 
         <h1 class="text-center fw-bold mb-3">Checkout</h1>
-        <div class="mx-auto mb-5" style="max-width: 600px; height: 4px; background: #0f9b0f; border-radius: 2px;"></div>
+        <div class="mx-auto mb-5" style="max-width: 600px; height: 4px; background: #0d6efd; border-radius: 2px;"></div>
 
         {{-- Errors --}}
         @if ($errors->any())

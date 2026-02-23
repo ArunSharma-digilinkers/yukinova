@@ -125,7 +125,9 @@
 
                     <div class="product-image">
                         <span class="badge">NEW</span>
-                        <img src="{{ asset('img/1.png') }}" alt="">
+                        <img src="{{ $product->image
+                        ? asset('storage/products/'.$product->image)
+                        : asset('img/no-image.png') }}" alt="">
                     </div>
 
                     <div class="product-content">
