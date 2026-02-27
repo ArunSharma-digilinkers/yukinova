@@ -27,7 +27,7 @@
             </li>
 
               <li class="nav-item">
-                <a href="#"
+                <a href="{{ route('orders.index') }}"
                     class="nav-link {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
                     <i class="fas fa-shopping-cart me-2"></i> Orders
                 </a>
@@ -40,7 +40,14 @@
                 </a>
             </li>
 
-               <li class="nav-item">
+            <li class="nav-item">
+                <a href="{{ route('shipping-zones.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.shipping-zones.*') ? 'active' : '' }}">
+                    <i class="fas fa-truck me-2"></i> Shipping Zones
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a href="#"
                     class="nav-link {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
                     <i class="fas fa-blog me-2"></i> Blog

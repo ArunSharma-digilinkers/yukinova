@@ -2,38 +2,13 @@
 @section('content')
 
 <div class="main-wrapper">
-    
-    <div id="carouselExampleIndicators" class="carousel slide">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{ asset('img/banner2.webp') }}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('img/banner1.webp') }}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('img/banner3.webp') }}" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+
+  <section class="main-video">
+    <video autoplay muted loop playsinline>
+        <source src="{{ asset('img/video.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</section>
 
     <div class="product-category-wrapper section-entry">
         <div class="container">
@@ -46,12 +21,22 @@
                 <!-- RIGHT PRODUCTS -->
                 <div class="product-grid" data-aos="fade-up">
 
-                    <a href="{{ url('two-wheeler-battery') }}" class="product-card">
+                    <a href="{{ url('hybrid-inverter') }}" class="product-card">
                         <div class="card-image">
-                            <img src="{{ asset('img/two-wheeler-battery.png') }}" alt="Two Wheeler Battery">
+                            <img src="{{ asset('img/hybrid-inverter.png') }}" alt="Two Wheeler Battery">
                         </div>
                         <div class="card-content">
-                            <h4>Two Wheeler</h4>
+                            <h4>Hybrid Inverter</h4>
+                            <span class="explore-btn">Explore →</span>
+                        </div>
+                    </a>
+
+                    <a href="{{ url('inverter-battery') }}" class="product-card">
+                        <div class="card-image">
+                            <img src="{{ asset('img/inverter.png') }}" alt="Two Wheeler Battery">
+                        </div>
+                        <div class="card-content">
+                            <h4>Inverter Battery</h4>
                             <span class="explore-btn">Explore →</span>
                         </div>
                     </a>
@@ -65,22 +50,13 @@
                             <span class="explore-btn">Explore →</span>
                         </div>
                     </a>
-                    <a href="{{ url('portable-power-solution') }}" class="product-card">
-                        <div class="card-image">
-                            <img src="{{ asset('img/portable-battery.png') }}" alt="Two Wheeler Battery">
-                        </div>
-                        <div class="card-content">
-                            <h4>Portable Power</h4>
-                            <span class="explore-btn">Explore →</span>
-                        </div>
-                    </a>
 
-                    <a href="portable-power-solution" class="product-card">
+                    <a href="{{ url('two-wheeler-battery') }}" class="product-card">
                         <div class="card-image">
-                            <img src="{{ asset('img/hybrid-inverter.png') }}" alt="Two Wheeler Battery">
+                            <img src="{{ asset('img/two-wheeler-battery.png') }}" alt="Two Wheeler Battery">
                         </div>
                         <div class="card-content">
-                            <h4>Hybrid Inverter</h4>
+                            <h4>Two Wheeler</h4>
                             <span class="explore-btn">Explore →</span>
                         </div>
                     </a>
@@ -94,18 +70,18 @@
                             <span class="explore-btn">Explore →</span>
                         </div>
                     </a>
-                        <a href="#" class="product-card">
+
+                    <a href="{{ url('portable-power-solution') }}" class="product-card">
                         <div class="card-image">
-                            <img src="{{ asset('img/inverter.png') }}" alt="Two Wheeler Battery">
+                            <img src="{{ asset('img/portable-battery.png') }}" alt="Two Wheeler Battery">
                         </div>
                         <div class="card-content">
-                            <h4>Inverter Battery</h4>
+                            <h4>Portable Power</h4>
                             <span class="explore-btn">Explore →</span>
                         </div>
                     </a>
 
                 </div>
-
 
             </div>
         </div>
@@ -119,20 +95,25 @@
                 <p>Explore our latest products</p>
             </div>
 
-            <div class="new-product-grid">
-       @foreach($products as $product)
+            <div class="new-product-grid-new-arrival">
+                @foreach($products as $product)
                 <div class="new-product-card">
 
                     <div class="product-image">
-                        <span class="badge">NEW</span>
-                        <img src="{{ $product->image
+                        <span class="badge-new">NEW</span>
+                        <a href="{{ route('product.show', $product->slug) }}">
+                            <img src="{{ $product->image
                         ? asset('storage/products/'.$product->image)
                         : asset('img/no-image.png') }}" alt="">
+                        </a>
                     </div>
 
                     <div class="product-content">
                         <h4>{{ $product->name }}</h4>
-                        <p class="price">₹ {{ $product->price }}</p>
+                        <p>
+                            {{ Str::limit(strip_tags($product->description), 20) }}
+                        </p>
+                        <p class="price">₹ {{ number_format($product->price, 2) }}</p>
 
                         <a href="{{ route('product.show', $product->slug) }}" class="btn-view">
                             View Details
@@ -141,7 +122,6 @@
 
                 </div>
                 @endforeach
-
             </div>
 
         </div>
@@ -157,11 +137,11 @@
                 </div>
 
                 <div class="cta-buttons">
-                    <a href="tel:+919999999999" class="cta-btn call-btn">
+                    <a href="tel:+91-9205993390" class="cta-btn call-btn">
                         <i class="fa-solid fa-phone"></i> Call an Expert
                     </a>
 
-                    <a href="https://wa.me/919999999999" target="_blank" class="cta-btn chat-btn">
+                    <a href="https://wa.me/+919205993390" target="_blank" class="cta-btn chat-btn">
                         <i class="fa-regular fa-comment"></i> Chat with Expert
                     </a>
                 </div>

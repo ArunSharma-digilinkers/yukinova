@@ -26,9 +26,14 @@ Route::get('solar-battery', [PagesController::class, 'solarbatt']);
 Route::get('cycle-battery', [PagesController::class, 'cyclebatt']);    
 Route::get('energy-solution-system', [PagesController::class, 'energysolution']);    
 Route::get('ess-commercial-industrial', [PagesController::class, 'commercialindustrial']);    
+Route::get('hybrid-inverter', [PagesController::class, 'inverterhybrid']);   
+Route::get('inverter-battery', [PagesController::class, 'inverterbatt']);   
 Route::get('/product/{id}', [PagesController::class, 'show'])->name('product.show');
 Route::get('/category/{slug}', [PagesController::class, 'category'])->name('category.products');
 
+Route::get('privacy-policy', [PagesController::class, 'privacypolicy']); 
+Route::get('return-policy', [PagesController::class, 'returnpolicy']); 
+Route::get('terms-and-conditions', [PagesController::class, 'terms']); 
 
 // For admin
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {

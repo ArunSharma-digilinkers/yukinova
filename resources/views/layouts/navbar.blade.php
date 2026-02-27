@@ -32,14 +32,12 @@
                             Products
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url('two-wheeler-battery') }}">Two Wheeler Battery</a></li>
+                            <li><a class="dropdown-item" href="{{ url('hybrid-inverter') }}">Hybrid Inverter</a></li>
+                            <li><a class="dropdown-item" href="{{ url('inverter-battery') }}">Inverter Battery</a></li>
                             <li><a class="dropdown-item" href="{{ url('three-wheeler-battery') }}">Three Wheeler Battery</a></li>
-                            <li><a class="dropdown-item" href="{{ url('traction-battery') }}">Traction Battery</a></li>
-                            <li><a class="dropdown-item" href="{{ url('portable-power-solution') }}">Portable Power Solution</a></li>
-                            <li><a class="dropdown-item" href="{{ url('solar-battery') }}">Solar Battery</a></li>
+                            <li><a class="dropdown-item" href="{{ url('two-wheeler-battery') }}">Two Wheeler Battery</a></li>
                             <li><a class="dropdown-item" href="{{ url('cycle-battery') }}">Cycle Battery</a></li>
-                            <li><a class="dropdown-item" href="{{ url('energy-solution-system') }}">Energy Solution System</a></li>
-                            <li><a class="dropdown-item" href="{{ url('ess-commercial-industrial') }}">ESS for Commercial Industry</a></li>
+                            <li><a class="dropdown-item" href="{{ url('portable-power-solution') }}">Portable Power Solution</a></li>
                         </ul>
                     </li>
 

@@ -23,6 +23,9 @@
 
                     <div class="product-content">
                         <h4>{{ $product->name }}</h4>
+                            <p>
+                                {{ Str::limit(strip_tags($product->description), 20) }}
+                            </p>
                         <p class="price">₹ {{ $product->base_price }}</p>
 
                         <a href="{{ route('product.show', $product->slug) }}" class="btn-view">

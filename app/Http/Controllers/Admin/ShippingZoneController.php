@@ -39,7 +39,7 @@ class ShippingZoneController extends Controller
             'status'     => $request->status,
         ]);
 
-        return redirect()->route('admin.shipping-zones.index')
+        return redirect()->route('shipping-zones.index')
             ->with('success', 'Shipping zone created successfully');
     }
 
@@ -68,7 +68,7 @@ class ShippingZoneController extends Controller
             'status'     => $request->status,
         ]);
 
-        return redirect()->route('admin.shipping-zones.index')
+        return redirect()->route('shipping-zones.index')
             ->with('success', 'Shipping zone updated successfully');
     }
 
@@ -76,7 +76,7 @@ class ShippingZoneController extends Controller
     {
         $shipping_zone->delete();
 
-        return redirect()->route('admin.shipping-zones.index')
+        return redirect()->route('shipping-zones.index')
             ->with('success', 'Shipping zone deleted successfully');
     }
 

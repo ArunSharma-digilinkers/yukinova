@@ -25,11 +25,12 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li><a href="#">Industry Serve</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="{{ url('about-us') }}">About Us</a></li>
+                        <li><a href="{{ url('/') }}">Blog</a></li>
+                        <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
+                        <li><a href="{{ url('privacy-policy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ url('return-policy') }}">Return Policy</a></li>
+                        <li><a href="{{ url('terms-and-conditions') }}">Terms & Conditions</a></li>
                     </ul>
                 </div>
             </div>
@@ -39,12 +40,12 @@
                 <div class="footer-widget">
                     <h4>Our Products</h4>
                     <ul>
-                        <li><a href="#">Two Wheeler Battery</a></li>
-                        <li><a href="#">Three Wheeler Battery</a></li>
-                        <li><a href="#">Solar Battery</a></li>
-                        <li><a href="#">Traction Battery</a></li>
-                        <li><a href="#">Portable Power</a></li>
-                        <li><a href="#">Energy Storage System</a></li>
+                        <li><a href="{{ url('hybrid-inverter') }}">Hybrid Inverter</a></li>
+                        <li><a href="{{ url('inverter-battery') }}">Inverter Battery</a></li>
+                        <li><a href="{{ url('three-wheeler-battery') }}">Three Wheeler Battery</a></li>
+                        <li><a href="{{ url('two-wheeler-battery') }}">Two Wheeler Battery</a></li>
+                        <li><a href="{{ url('cycle-battery') }}">Cycle Battery</a></li>
+                        <li><a href="{{ url('portable-power-solution') }}">Portable Power Solution</a></li>
                     </ul>
                 </div>
             </div>
@@ -53,7 +54,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="footer-widget">
                     <h4>Contact Info</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Plot C2, Sector A-3, TDS city, Loni, Ghaziabad, UP-200102</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Plot C2, Sector A-3, TDS city, Loni, Ghaziabad, UP-200102
+                    </p>
                     <p><i class="fas fa-phone"></i> +91-93116 06792</p>
                     <p><i class="fas fa-envelope"></i> sales@yukinova.com</p>
 
@@ -71,7 +73,7 @@
     <div class="footer-bottom">
         <div class="container">
             <p>&copy; copyright Yukinova All Rights Reserved. Site Created & Maintained By <a
-                href="http://www.digilinkers.com" target="_blank" class="creator-link">Digilinkers</a></p>
+                    href="http://www.digilinkers.com" target="_blank" class="creator-link">Digilinkers</a></p>
         </div>
     </div>
 </footer>

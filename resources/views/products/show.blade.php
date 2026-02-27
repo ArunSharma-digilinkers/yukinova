@@ -163,88 +163,79 @@
                 </div>
             </div>
 
-<div class="col-lg-12 mt-5">
+            <div class="col-lg-12 mt-5">
 
-    <div class="product-details-wrapper">
+                <div class="product-details-wrapper">
 
-        {{-- TAB HEADERS --}}
-        <ul class="nav product-tabs" id="productTab" role="tablist">
+                    {{-- TAB HEADERS --}}
+                    <ul class="nav product-tabs" id="productTab" role="tablist">
 
-            @if(!empty(strip_tags($product->description)))
-            <li class="nav-item">
-                <button class="nav-link active"
-                        data-bs-toggle="tab"
-                        data-bs-target="#description">
-                    Description
-                </button>
-            </li>
-            @endif
+                        @if(!empty(strip_tags($product->description)))
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#description">
+                                Description
+                            </button>
+                        </li>
+                        @endif
 
-            @if(!empty($product->technical_features))
-            <li class="nav-item">
-                <button class="nav-link"
-                        data-bs-toggle="tab"
-                        data-bs-target="#features">
-                    Technical Features
-                </button>
-            </li>
-            @endif
+                        @if(!empty($product->technical_features))
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#features">
+                                Technical Features
+                            </button>
+                        </li>
+                        @endif
 
-            @if(!empty($product->warranty))
-            <li class="nav-item">
-                <button class="nav-link"
-                        data-bs-toggle="tab"
-                        data-bs-target="#warranty">
-                    Warranty
-                </button>
-            </li>
-            @endif
+                        @if(!empty($product->warranty))
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#warranty">
+                                Warranty
+                            </button>
+                        </li>
+                        @endif
 
-        </ul>
+                    </ul>
 
-        {{-- TAB CONTENT --}}
-        <div class="tab-content product-tab-content">
+                    {{-- TAB CONTENT --}}
+                    <div class="tab-content product-tab-content">
 
-            @if(!empty(strip_tags($product->description)))
-            <div class="tab-pane fade show active"
-                 id="description">
+                        @if(!empty(strip_tags($product->description)))
+                        <div class="tab-pane fade show active" id="description">
 
-                <div class="tab-card">
-                    {!! $product->description !!}
+                            <div class="tab-card">
+                                {!! $product->description !!}
+                            </div>
+
+                        </div>
+                        @endif
+
+
+                        @if(!empty($product->technical_features))
+                        <div class="tab-pane fade" id="features">
+
+                            <div class="tab-card">
+                                {!! $product->technical_features !!}
+                            </div>
+
+                        </div>
+                        @endif
+
+
+                        @if(!empty($product->warranty))
+                        <div class="tab-pane fade" id="warranty">
+
+                            <div class="tab-card">
+                                {!! $product->warranty !!}
+                            </div>
+
+                        </div>
+                        @endif
+
+                    </div>
+
                 </div>
 
             </div>
-            @endif
-
-
-            @if(!empty($product->technical_features))
-            <div class="tab-pane fade"
-                 id="features">
-
-                <div class="tab-card">
-                    {!! $product->technical_features !!}
-                </div>
-
-            </div>
-            @endif
-
-
-            @if(!empty($product->warranty))
-            <div class="tab-pane fade"
-                 id="warranty">
-
-                <div class="tab-card">
-                    {!! $product->warranty !!}
-                </div>
-
-            </div>
-            @endif
-
-        </div>
-
-    </div>
-
-</div>
         </div>
 
 

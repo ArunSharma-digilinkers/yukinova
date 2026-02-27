@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2026 at 08:03 AM
+-- Generation Time: Feb 26, 2026 at 11:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -93,7 +93,9 @@ INSERT INTO `categories` (`id`, `name`, `slug`, `status`, `created_at`, `updated
 (7, 'Solar Battery', 'solar-battery', 1, '2026-02-21 03:05:29', '2026-02-21 03:05:29'),
 (8, 'Cycle Battery', 'cycle-battery', 1, '2026-02-21 03:05:39', '2026-02-21 03:05:39'),
 (9, 'Energy Solution System', 'energy-solution-system', 1, '2026-02-21 03:06:29', '2026-02-21 03:06:29'),
-(10, 'Ess Commercial Industrial', 'ess-commercial-industrial', 1, '2026-02-21 03:06:47', '2026-02-21 03:06:47');
+(10, 'Ess Commercial Industrial', 'ess-commercial-industrial', 1, '2026-02-21 03:06:47', '2026-02-21 03:06:47'),
+(11, 'Hybrid Inverter', 'hybrid-inverter', 1, '2026-02-24 03:25:26', '2026-02-24 03:25:26'),
+(12, 'Inverter Battery', 'inverter-battery', 1, '2026-02-24 03:25:39', '2026-02-24 03:25:39');
 
 -- --------------------------------------------------------
 
@@ -192,7 +194,71 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2026_02_19_062643_create_products_table', 4),
 (12, '2026_02_20_064345_create_coupons_table', 4),
 (13, '2026_02_21_084943_add_images_to_products_table', 4),
-(14, '2026_02_21_114244_create_addresses_table', 5);
+(14, '2026_02_21_114244_create_addresses_table', 5),
+(15, '2026_02_23_113005_create_orders_table', 6),
+(16, '2026_02_24_110556_create_order_items_table', 6),
+(17, '2026_02_24_113215_create_shipping_zones_table', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `address` text NOT NULL,
+  `pincode` varchar(10) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `gstin` varchar(255) DEFAULT NULL,
+  `shipping_name` varchar(255) DEFAULT NULL,
+  `shipping_phone` varchar(20) DEFAULT NULL,
+  `shipping_address` text DEFAULT NULL,
+  `shipping_pincode` varchar(10) DEFAULT NULL,
+  `shipping_state` varchar(255) DEFAULT NULL,
+  `shipping_city` varchar(255) DEFAULT NULL,
+  `subtotal` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `gst_total` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `shipping_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `shipping_gst` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `discount_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `total_amount` decimal(10,2) NOT NULL,
+  `coupon_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `payment_method` varchar(255) DEFAULT NULL,
+  `payment_status` varchar(255) NOT NULL DEFAULT 'pending',
+  `payment_id` varchar(255) DEFAULT NULL,
+  `invoice_number` varchar(255) DEFAULT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `base_price` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `gst_percentage` decimal(5,2) NOT NULL DEFAULT 0.00,
+  `gst_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `discount_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `total_price` decimal(10,2) NOT NULL,
+  `serial_number` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -264,7 +330,31 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('xZRDkBoSTJb6RbSZRtyAbIiidAUsYBPYaMnTx1D6', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieXZTZUZkcmRwcVpGRmliVjdwREVIMEpkTndKd2VDVGlZQWlBN0NSaCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9kdWN0L3NoYWhpZCI7czo1OiJyb3V0ZSI7czoxMjoicHJvZHVjdC5zaG93Ijt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6ImNhcnQiO2E6MTp7czo2OiJzaGFoaWQiO2E6NDp7czo0OiJuYW1lIjtzOjY6IlNoYWhpZCI7czo1OiJwcmljZSI7czo3OiI4MDAwLjAwIjtzOjg6InF1YW50aXR5IjtpOjE7czo1OiJpbWFnZSI7czoxNDoiMTc3MTY2NDMzMy5wbmciO319fQ==', 1771829957);
+('yQdWAzFS1I3uzw0ipVQwQzqWFfU8OZzDPrtRwMZx', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaXN5NU1FRGxsSUN1MnlORWNYSjI3N04yVlNOZ2RQZXNrOWNLUUJOMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9fQ==', 1772100265);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shipping_zones`
+--
+
+CREATE TABLE `shipping_zones` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `states` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`states`)),
+  `rate` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `free_above` decimal(10,2) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `shipping_zones`
+--
+
+INSERT INTO `shipping_zones` (`id`, `name`, `states`, `rate`, `free_above`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Shahid', '[\"Andaman & Nicobar Islands\",\"Assam\"]', 1.00, NULL, 1, '2026-02-24 06:22:37', '2026-02-24 06:22:37');
 
 -- --------------------------------------------------------
 
@@ -289,7 +379,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
-(1, 'Admin', 'admin@gmail.com', NULL, '$2y$12$iBePvJlVSKGYrPPrpm5EsuBdnA/XyyhDD6OzYh.c.mlEWmpWoRb1m', NULL, '2026-02-15 23:20:33', '2026-02-15 23:20:33', 'admin');
+(1, 'Admin', 'admin@gmail.com', NULL, '$2y$12$iBePvJlVSKGYrPPrpm5EsuBdnA/XyyhDD6OzYh.c.mlEWmpWoRb1m', NULL, '2026-02-15 23:20:33', '2026-02-15 23:20:33', 'admin'),
+(2, 'aman', 'aman@gmail.com', NULL, '$2y$12$9hZ0rQ0tQ.CxJfTF/n5F4elFjGXm293fbQ3lTZHc.tBZr9/XqkAVW', NULL, '2026-02-23 04:59:00', '2026-02-23 04:59:00', 'user');
 
 --
 -- Indexes for dumped tables
@@ -357,6 +448,23 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `orders_invoice_number_unique` (`invoice_number`),
+  ADD KEY `orders_user_id_foreign` (`user_id`),
+  ADD KEY `orders_coupon_id_foreign` (`coupon_id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_items_order_id_foreign` (`order_id`),
+  ADD KEY `order_items_product_id_foreign` (`product_id`);
+
+--
 -- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
@@ -380,6 +488,12 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
+-- Indexes for table `shipping_zones`
+--
+ALTER TABLE `shipping_zones`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -400,7 +514,7 @@ ALTER TABLE `addresses`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `coupons`
@@ -424,7 +538,19 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -433,10 +559,16 @@ ALTER TABLE `products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `shipping_zones`
+--
+ALTER TABLE `shipping_zones`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -447,6 +579,20 @@ ALTER TABLE `users`
 --
 ALTER TABLE `addresses`
   ADD CONSTRAINT `addresses_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_coupon_id_foreign` FOREIGN KEY (`coupon_id`) REFERENCES `coupons` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `order_items_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `products`

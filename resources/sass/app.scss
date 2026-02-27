@@ -90,7 +90,7 @@ $dark-light :#f1eeeb;
 
 
 .dropdown-item {
-	font-weight: 300;
+	font-weight: 400;
 }
 
 .navbar-expand-lg .navbar-nav .dropdown-menu {
@@ -126,7 +126,37 @@ $dark-light :#f1eeeb;
     background: #0056b3;
 }
 
+.privacy-wrapper {
+    h2 {
+        font-weight: 600;
+    }
 
+    h4 {
+        font-weight: 600;
+        font-size: 23px;
+    }
+    h5 {
+        font-weight: 500;
+    }
+    ul {
+        list-style: none;
+        padding-left: 0;
+        line-height: 30px;
+    }
+}
+
+.main-video {
+    margin-top: 70px;
+    width: 100%;
+    height: 100%; /* full screen height */
+    overflow: hidden;
+}
+
+.main-video video {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* important for full cover */
+}
 /*-------------------------------------------------------------- Home Styling------------------------------------------------ */
 .main-wrapper {
     margin-top: 65px;
@@ -740,6 +770,12 @@ $dark-light :#f1eeeb;
     .main-img {
         max-height: 300px;
     }
+    .main-video {
+    margin-top: 70px;
+    width: 100%;
+    height: 27vh;
+    overflow: hidden;
+}
 }
 
 /* ===== PRODUCT TABS ===== */
@@ -794,6 +830,94 @@ $dark-light :#f1eeeb;
     transition: opacity 0.3s ease-in-out;
 }
 
+
+.new-product-grid-new-arrival {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.new-product-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.35s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    position: relative;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-image {
+        position: relative;
+        overflow: hidden;
+        background: #f8f9fa;
+
+        img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .badge-new {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: #fff;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 50px;
+            letter-spacing: 1px;
+        }
+    }
+
+    &:hover img {
+        transform: scale(1.08);
+    }
+
+    .product-content {
+        padding: 20px;
+
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: -18px;
+            color: #222;
+            min-height: 48px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 15px;
+        }
+
+        .btn-view {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 50px;
+            background: #000;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+
+            &:hover {
+                background: $primary-color;
+                letter-spacing: 1px;
+            }
+        }
+    }
+}
 
 /*------------------------------------------------ About Styling------------------------------------------------ */
 
