@@ -48,7 +48,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="#"
+                <a href="{{ route('blog.index') }}"
                     class="nav-link {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
                     <i class="fas fa-blog me-2"></i> Blog
                 </a>

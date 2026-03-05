@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -223,4 +224,15 @@ class PagesController extends Controller
       public function terms() {
         return view('pages.terms-and-conditions');
     }
+
+      public function blog(){
+         $blogs = Blog::orderBy('id', 'DESC')->get();
+        return view('pages.blog', compact('blogs'));
+    }
+
+       public function detail($slug){
+        $blogs = Blog::where('slug', $slug)->firstOrFail();
+        return view('pages.details', compact('blogs'));
+    }
+
 }

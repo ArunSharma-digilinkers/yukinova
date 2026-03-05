@@ -12,6 +12,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Admin\ShippingZoneController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\BlogController;
 
 
 // pages
@@ -30,6 +31,8 @@ Route::get('hybrid-inverter', [PagesController::class, 'inverterhybrid']);
 Route::get('inverter-battery', [PagesController::class, 'inverterbatt']);   
 Route::get('/product/{id}', [PagesController::class, 'show'])->name('product.show');
 Route::get('/category/{slug}', [PagesController::class, 'category'])->name('category.products');
+Route::get('/blog', [PagesController::class, 'blog'])->name('blog');
+Route::get('/details/{slug}', [PagesController::class, 'detail'])->name('details.detail');
 
 Route::get('privacy-policy', [PagesController::class, 'privacypolicy']); 
 Route::get('return-policy', [PagesController::class, 'returnpolicy']); 
@@ -45,6 +48,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
     Route::post('orders/{order}/status', [App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::resource('blog', BlogController::class);
 });
 
 
